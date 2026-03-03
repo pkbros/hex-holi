@@ -38,12 +38,13 @@ function randomOffset(): number {
   return Math.random() < 0.5 ? -offset : offset
 }
 
-export function generateOptions(correctHex: string): string[] {
+export function generateOptions(correctHex: string, count = 3): string[] {
   const correct = hexToRgb(correctHex)
   const distractors: string[] = []
+  const needed = count - 1
   let attempts = 0
 
-  while (distractors.length < 3 && attempts < 300) {
+  while (distractors.length < needed && attempts < 300) {
     attempts++
     const r = Math.max(0, Math.min(255, Math.round(correct.r + randomOffset())))
     const g = Math.max(0, Math.min(255, Math.round(correct.g + randomOffset())))
@@ -61,12 +62,12 @@ export function generateOptions(correctHex: string): string[] {
   }
 
   // Fallback
-  while (distractors.length < 3) {
+  while (distractors.length < needed) {
     distractors.push(randomHex())
   }
 
   const options = [...distractors]
-  const insertIdx = Math.floor(Math.random() * 4)
+  const insertIdx = Math.floor(Math.random() * count)
   options.splice(insertIdx, 0, correctHex)
   return options
 }

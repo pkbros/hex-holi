@@ -15,7 +15,7 @@ function createRound(prev?: Partial<GameState>): GameState {
   const hex = randomHex()
   return {
     currentHex: hex,
-    options: generateOptions(hex),
+    options: generateOptions(hex, 3),
     currentStreak: prev?.currentStreak ?? 0,
     bestStreak: prev?.bestStreak ?? parseInt(localStorage.getItem('hexholi-best') || '0', 10),
     totalCorrect: prev?.totalCorrect ?? 0,
