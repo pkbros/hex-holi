@@ -1,4 +1,4 @@
-const RANKS = [
+export const RANKS = [
   { min: 30, title: 'Principal Color Architect', emoji: '🏆' },
   { min: 20, title: 'Staff Color Scientist', emoji: '🔬' },
   { min: 15, title: 'Lead Chromatic Engineer', emoji: '⚡' },

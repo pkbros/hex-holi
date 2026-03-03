@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useGame } from './hooks/useGame'
 import { useSplatCanvas } from './hooks/useSplatCanvas'
 import { hexToRgb, describeChannel } from './utils/colors'
-import { generateBragMessage, getRank } from './utils/ranks'
+import { generateBragMessage, getRank, RANKS } from './utils/ranks'
 import { updateFavicon } from './utils/favicon'
 import { playSplatSound, playCorrectSound, playWrongSound } from './utils/sounds'
 import { EduLinkUpLogo } from './components/EduLinkUpLogo'
@@ -202,20 +202,37 @@ function App() {
               </div>
             </div>
 
-            {/* Rank */}
-            <div className="bg-black/40 backdrop-blur-sm rounded-xl p-4 flex items-center gap-3 mb-5">
-              <span className="text-3xl lg:text-4xl">{rank.emoji}</span>
-              <div className="flex-1">
-                <div className="text-white text-base lg:text-xl font-semibold">{rank.title}</div>
-                <div className="text-xs lg:text-sm" style={{ color: '#8B7535' }}>
-                  {game.bestStreak < 3 ? 'Get a 3-streak to rank up!' :
-                   game.bestStreak < 6 ? 'Reach 6 for next rank!' :
-                   game.bestStreak < 10 ? 'Reach 10 for next rank!' :
-                   game.bestStreak < 15 ? 'Reach 15 for next rank!' :
-                   game.bestStreak < 20 ? 'Reach 20 for next rank!' :
-                   game.bestStreak < 30 ? 'Reach 30 for the top!' :
-                   'You are the ultimate Color Architect!'}
-                </div>
+            {/* Rank Ladder */}
+            <div className="bg-black/40 backdrop-blur-sm rounded-xl p-4 mb-5">
+              <div className="text-amber-500/50 text-xs lg:text-sm uppercase tracking-wider mb-3 text-center">Rank Ladder</div>
+              <div className="space-y-1">
+                {[...RANKS].reverse().map((r) => {
+                  const isCurrent = r.title === rank.title
+                  const isAchieved = game.bestStreak >= r.min
+                  return (
+                    <div
+                      key={r.min}
+                      className={`flex items-center gap-2 px-3 py-1.5 lg:py-2 rounded-lg transition-all ${
+                        isCurrent
+                          ? 'bg-amber-500/20 border border-amber-500/40'
+                          : isAchieved
+                            ? 'opacity-60'
+                            : 'opacity-30'
+                      }`}
+                    >
+                      <span className="text-lg lg:text-xl shrink-0">{r.emoji}</span>
+                      <div className="flex-1 min-w-0">
+                        <span className={`text-xs lg:text-sm font-medium truncate block ${
+                          isCurrent ? 'text-amber-300' : isAchieved ? 'text-gray-300' : 'text-gray-500'
+                        }`}>{r.title}</span>
+                      </div>
+                      <span className={`text-[10px] lg:text-xs shrink-0 tabular-nums ${
+                        isCurrent ? 'text-amber-400' : 'text-gray-600'
+                      }`}>{r.min}+</span>
+                      {isCurrent && <span className="text-[10px] lg:text-xs text-amber-400 font-bold shrink-0">◄ YOU</span>}
+                    </div>
+                  )
+                })}
               </div>
             </div>
 
