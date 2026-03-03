@@ -3,10 +3,17 @@
 html, body, #app {
   margin: 0;
   padding: 0;
-  overflow: hidden;
   background: #0a0a0a;
-  height: 100vh;
-  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+@media (min-width: 1024px) {
+  html, body, #app {
+    overflow: hidden;
+    height: 100vh;
+    height: 100dvh;
+  }
 }
 
 #splat-canvas {
@@ -22,8 +29,16 @@ html, body, #app {
 .game-ui {
   position: relative;
   z-index: 10;
-  height: 100vh;
-  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+@media (min-width: 1024px) {
+  .game-ui {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
 }
 
 @keyframes screen-shake {
