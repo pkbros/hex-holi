@@ -77,14 +77,14 @@ function App() {
           {/* Sound toggle */}
           <button
             onClick={() => setSoundEnabled(s => !s)}
-            className="absolute top-3 right-3 bg-black/40 backdrop-blur-sm rounded-lg px-3 py-1.5 text-white text-lg hover:bg-black/60 transition-colors cursor-pointer z-20"
+            className="absolute top-3 right-3 bg-black/70 backdrop-blur-md rounded-lg px-3 py-1.5 text-white text-lg hover:bg-black/80 transition-colors cursor-pointer z-20 shadow-lg"
             title={soundEnabled ? 'Mute' : 'Unmute'}
           >
             {soundEnabled ? '🔊' : '🔇'}
           </button>
 
           <div className="w-full max-w-sm lg:max-w-md mx-auto flex flex-col items-center">
-            <h1 className="text-white text-lg lg:text-2xl font-bold opacity-60 mb-4">
+            <h1 className="text-white text-lg lg:text-2xl font-bold opacity-90 mb-4 drop-shadow-lg">
               🎨 Hex-Holi: The Splash Challenge
             </h1>
 
@@ -96,9 +96,9 @@ function App() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.25 }}
-                className="w-full bg-black/50 backdrop-blur-sm rounded-xl p-5 lg:p-6 mb-5"
+                className="w-full bg-black/75 backdrop-blur-md rounded-xl p-5 lg:p-6 mb-5 shadow-lg shadow-black/30"
               >
-                <p className="text-gray-400 text-sm lg:text-base mb-4 text-center">
+                <p className="text-gray-300 text-sm lg:text-base mb-4 text-center">
                   🎯 Identify this color from its RGB mix
                 </p>
                 <div className="space-y-3 lg:space-y-4">
@@ -120,7 +120,7 @@ function App() {
                     </div>
                   ))}
                 </div>
-                <p className="text-gray-600 text-xs lg:text-sm mt-3 text-center">Higher values = More pigment</p>
+                <p className="text-gray-400 text-xs lg:text-sm mt-3 text-center">Higher values = More pigment</p>
               </motion.div>
             </AnimatePresence>
 
@@ -156,7 +156,7 @@ function App() {
               })}
             </div>
 
-            <p className="text-gray-600 text-sm lg:text-base">Pick the color that matches the RGB bars above</p>
+            <p className="text-gray-400 text-sm lg:text-base drop-shadow">Pick the color that matches the RGB bars above</p>
           </div>
         </div>
 
@@ -188,23 +188,23 @@ function App() {
 
             {/* Score cards */}
             <div className="grid grid-cols-3 gap-3 mb-5">
-              <div className="bg-black/40 backdrop-blur-sm rounded-xl p-3 lg:p-4 text-center">
-                <div className="text-amber-500/50 text-xs lg:text-sm uppercase tracking-wider">Streak</div>
+              <div className="bg-black/70 backdrop-blur-md rounded-xl p-3 lg:p-4 text-center shadow-lg shadow-black/20">
+                <div className="text-amber-500/80 text-xs lg:text-sm uppercase tracking-wider">Streak</div>
                 <div className="text-2xl lg:text-4xl font-bold text-white tabular-nums">{game.currentStreak}</div>
               </div>
-              <div className="bg-black/40 backdrop-blur-sm rounded-xl p-3 lg:p-4 text-center">
-                <div className="text-amber-500/50 text-xs lg:text-sm uppercase tracking-wider">Best</div>
+              <div className="bg-black/70 backdrop-blur-md rounded-xl p-3 lg:p-4 text-center shadow-lg shadow-black/20">
+                <div className="text-amber-500/80 text-xs lg:text-sm uppercase tracking-wider">Best</div>
                 <div className="text-2xl lg:text-4xl font-bold tabular-nums" style={{ color: '#D4A017' }}>{game.bestStreak}</div>
               </div>
-              <div className="bg-black/40 backdrop-blur-sm rounded-xl p-3 lg:p-4 text-center">
-                <div className="text-amber-500/50 text-xs lg:text-sm uppercase tracking-wider">Total</div>
+              <div className="bg-black/70 backdrop-blur-md rounded-xl p-3 lg:p-4 text-center shadow-lg shadow-black/20">
+                <div className="text-amber-500/80 text-xs lg:text-sm uppercase tracking-wider">Total</div>
                 <div className="text-2xl lg:text-4xl font-bold text-white tabular-nums">{game.totalCorrect}</div>
               </div>
             </div>
 
             {/* Rank Ladder */}
-            <div className="bg-black/40 backdrop-blur-sm rounded-xl p-4 mb-5">
-              <div className="text-amber-500/50 text-xs lg:text-sm uppercase tracking-wider mb-3 text-center">Rank Ladder</div>
+            <div className="bg-black/70 backdrop-blur-md rounded-xl p-4 mb-5 shadow-lg shadow-black/20">
+              <div className="text-amber-500/80 text-xs lg:text-sm uppercase tracking-wider mb-3 text-center">Rank Ladder</div>
               <div className="space-y-1">
                 {[...RANKS].reverse().map((r) => {
                   const isCurrent = r.title === rank.title
@@ -214,10 +214,10 @@ function App() {
                       key={r.min}
                       className={`flex items-center gap-2 px-3 py-1.5 lg:py-2 rounded-lg transition-all ${
                         isCurrent
-                          ? 'bg-amber-500/20 border border-amber-500/40'
+                          ? 'bg-amber-500/25 border border-amber-500/50 shadow-md shadow-amber-500/10'
                           : isAchieved
-                            ? 'opacity-60'
-                            : 'opacity-30'
+                            ? 'opacity-70'
+                            : 'opacity-40'
                       }`}
                     >
                       <span className="text-lg lg:text-xl shrink-0">{r.emoji}</span>
@@ -240,13 +240,13 @@ function App() {
             <div className="space-y-2.5 mb-5">
               <button
                 onClick={handleBrag}
-                className="w-full bg-green-700/70 hover:bg-green-600 text-white px-4 py-3 rounded-xl text-base lg:text-lg font-medium transition-colors cursor-pointer"
+                className="w-full bg-green-700/80 hover:bg-green-600 text-white px-4 py-3 rounded-xl text-base lg:text-lg font-medium transition-colors cursor-pointer shadow-lg shadow-green-900/30"
               >
                 📱 Share Your Highscore
               </button>
               <button
                 onClick={handleClean}
-                className="w-full bg-black/30 hover:bg-black/50 px-4 py-3 rounded-xl text-base lg:text-lg font-medium transition-colors cursor-pointer"
+                className="w-full bg-black/60 hover:bg-black/70 px-4 py-3 rounded-xl text-base lg:text-lg font-medium transition-colors cursor-pointer shadow-lg shadow-black/20"
                 style={{ color: '#8B7535' }}
               >
                 🧹 Clean Screen
@@ -254,14 +254,14 @@ function App() {
             </div>
 
             {/* About */}
-            <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 mb-4">
-              <p className="text-gray-400 text-sm lg:text-base leading-relaxed mb-3">
-                Your gateway to <strong className="text-gray-300">quality education</strong> in Engineering, Medical, Board Exams & Government Exam preparation.
+            <div className="bg-black/70 backdrop-blur-md rounded-xl p-4 mb-4 shadow-lg shadow-black/20">
+              <p className="text-gray-300 text-sm lg:text-base leading-relaxed mb-3">
+                Your gateway to <strong className="text-gray-100">quality education</strong> in Engineering, Medical, Board Exams & Government Exam preparation.
               </p>
               <div className="flex gap-4 justify-center text-xs lg:text-sm">
-                <span><strong style={{ color: '#D4A017' }}>1.5K+</strong> <span className="text-gray-500">Learners</span></span>
-                <span><strong style={{ color: '#D4A017' }}>10+</strong> <span className="text-gray-500">Courses</span></span>
-                <span><strong style={{ color: '#D4A017' }}>94%</strong> <span className="text-gray-500">Success</span></span>
+                <span><strong style={{ color: '#D4A017' }}>1.5K+</strong> <span className="text-gray-400">Learners</span></span>
+                <span><strong style={{ color: '#D4A017' }}>10+</strong> <span className="text-gray-400">Courses</span></span>
+                <span><strong style={{ color: '#D4A017' }}>94%</strong> <span className="text-gray-400">Success</span></span>
               </div>
             </div>
 
@@ -287,7 +287,7 @@ function App() {
                      className="text-gray-600 hover:text-amber-400 text-base lg:text-lg transition-colors">{s.icon}</a>
                 ))}
               </div>
-              <p className="text-gray-700 text-xs">© 2026 EduLinkUp. All rights reserved.</p>
+              <p className="text-gray-500 text-xs">© 2026 EduLinkUp. All rights reserved.</p>
             </div>
           </div>
         </div>
