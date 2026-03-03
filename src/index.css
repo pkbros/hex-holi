@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: #0a0a0a;
+  min-height: 100vh;
+}
+
+#splat-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.game-ui {
+  position: relative;
+  z-index: 10;
+}
+
+@keyframes screen-shake {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-5px, -3px);
+  }
+  20% {
+    transform: translate(5px, 3px);
+  }
+  30% {
+    transform: translate(-3px, 5px);
+  }
+  40% {
+    transform: translate(3px, -5px);
+  }
+  50% {
+    transform: translate(-5px, 3px);
+  }
+  60% {
+    transform: translate(5px, -3px);
+  }
+  70% {
+    transform: translate(-3px, -5px);
+  }
+  80% {
+    transform: translate(3px, 5px);
+  }
+  90% {
+    transform: translate(-5px, -3px);
+  }
+}
+
+.screen-shake {
+  animation: screen-shake 0.4s ease-in-out;
+}
+
+.grey-wash {
+  filter: grayscale(1) brightness(0.7);
+}
