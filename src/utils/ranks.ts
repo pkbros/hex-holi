@@ -17,6 +17,7 @@ export function generateBragMessage(bestStreak: number, coverage: number): strin
   const { title, emoji } = getRank(bestStreak)
   return [
     '🎨 Hex-Holi: The Splash Challenge 🎨',
+    'by EduLinkUp (edulinkup.dev)',
     '',
     `I just hit a ${bestStreak}-color streak without a single miss!`,
     '',
@@ -24,5 +25,7 @@ export function generateBragMessage(bestStreak: number, coverage: number): strin
     `💦 My screen is currently ${coverage}% covered in digital Gulaal.`,
     '',
     `Can you decode the Hex? Play here: ${window.location.href}`,
+    '',
+    '📚 Learn coding, crack exams & more at https://edulinkup.dev',
   ].join('\n')
 }

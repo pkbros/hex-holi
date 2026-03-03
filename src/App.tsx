@@ -6,6 +6,7 @@ import { hexToRgb, describeChannel } from './utils/colors'
 import { generateBragMessage, getRank } from './utils/ranks'
 import { updateFavicon } from './utils/favicon'
 import { playSplatSound, playCorrectSound, playWrongSound } from './utils/sounds'
+import { EduLinkUpLogo } from './components/EduLinkUpLogo'
 
 function App() {
   const game = useGame()
@@ -129,6 +130,16 @@ function App() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
+          {/* EduLinkUp Branded Header */}
+          <a
+            href="https://edulinkup.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex justify-center mb-3 opacity-70 hover:opacity-100 transition-opacity"
+          >
+            <EduLinkUpLogo className="h-6" />
+          </a>
+
           {/* Title */}
           <h1 className="text-center text-white text-lg font-bold mb-1 opacity-60">
             🎨 Hex-Holi: The Splash Challenge
@@ -294,7 +305,36 @@ function App() {
           <div className="text-center mt-4 text-gray-600 text-xs">
             {game.totalCorrect} colors identified this session
           </div>
+
+          {/* EduLinkUp Footer Banner */}
+          <div className="mt-8 pt-4 border-t border-white/5">
+            <a
+              href="https://edulinkup.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center gap-2 py-3 px-4 rounded-xl bg-indigo-950/30 hover:bg-indigo-950/50 transition-colors"
+            >
+              <div className="flex items-center gap-2">
+                <span className="text-gray-500 text-xs">Built with 💜 by</span>
+                <EduLinkUpLogo className="h-4" />
+              </div>
+              <p className="text-gray-600 text-[10px] group-hover:text-gray-400 transition-colors">
+                Learn. Connect. Grow Together. — Free courses in Engineering, Medical & more
+              </p>
+            </a>
+          </div>
         </motion.div>
+
+        {/* Fixed bottom-right watermark */}
+        <a
+          href="https://edulinkup.dev"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed bottom-3 right-3 z-20 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1.5 flex items-center gap-1.5 opacity-50 hover:opacity-100 transition-opacity"
+        >
+          <span className="text-gray-400 text-[10px]">Powered by</span>
+          <EduLinkUpLogo className="h-3" />
+        </a>
       </div>
     </>
   )
