@@ -14,18 +14,31 @@ export function getRank(streak: number) {
 }
 
 export function generateBragMessage(bestStreak: number, coverage: number): string {
-  const { title, emoji } = getRank(bestStreak)
+  const { title } = getRank(bestStreak)
+
+  const holiLines = [
+    'Holi hai! Colors are flying everywhere!',
+    'This Holi, I\'m decoding colors like a pro!',
+    'Bura na mano, Holi hai! And I\'m nailing these colors!',
+    'Rang barse! My screen is dripping in digital Gulaal!',
+    'Happy Holi! Come splash some colors with me!',
+  ]
+  const holiLine = holiLines[Math.floor(Math.random() * holiLines.length)]
+
   return [
-    '🎨 Hex-Holi: The Splash Challenge 🎨',
-    'by EduLinkUp (edulinkup.dev)',
+    `*Hex-Holi: The Splash Challenge*`,
+    `_by EduLinkUp_`,
     '',
-    `I just hit a ${bestStreak}-color streak without a single miss!`,
+    holiLine,
     '',
-    `🎖️ Rank: ${emoji} ${title}`,
-    `💦 My screen is currently ${coverage}% covered in digital Gulaal.`,
+    `*${bestStreak}* color streak without a miss!`,
+    `Rank: *${title}*`,
+    `Screen: *${coverage}%* covered in Gulaal`,
     '',
-    `Can you decode the Hex? Play here: ${window.location.href}`,
+    `Can you beat my score?`,
+    `${window.location.href}`,
     '',
-    '📚 Learn coding, crack exams & more at https://edulinkup.dev',
+    `_Happy Holi from EduLinkUp!_`,
+    `https://edulinkup.dev`,
   ].join('\n')
 }

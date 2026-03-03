@@ -55,20 +55,38 @@ export function useSplatCanvas() {
       const { w, h } = getSize()
       const mx = w / 2
       const my = h / 2
-      const count = 120
 
-      for (let i = 0; i < count; i++) {
-        const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.5
-        const speed = 3 + Math.random() * 12
+      // Main burst — big chunky splats
+      const mainCount = 200
+      for (let i = 0; i < mainCount; i++) {
+        const angle = (Math.PI * 2 * i) / mainCount + (Math.random() - 0.5) * 0.8
+        const speed = 4 + Math.random() * 18
         particlesRef.current.push({
-          x: mx + (Math.random() - 0.5) * 40,
-          y: my + (Math.random() - 0.5) * 40,
+          x: mx + (Math.random() - 0.5) * 60,
+          y: my + (Math.random() - 0.5) * 60,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
-          radius: 3 + Math.random() * 8,
+          radius: 6 + Math.random() * 16,
           color,
-          life: 50 + Math.floor(Math.random() * 40),
-          maxLife: 90,
+          life: 60 + Math.floor(Math.random() * 50),
+          maxLife: 110,
+        })
+      }
+
+      // Secondary ring — smaller fast particles for spray effect
+      const sprayCount = 80
+      for (let i = 0; i < sprayCount; i++) {
+        const angle = Math.random() * Math.PI * 2
+        const speed = 8 + Math.random() * 22
+        particlesRef.current.push({
+          x: mx + (Math.random() - 0.5) * 30,
+          y: my + (Math.random() - 0.5) * 30,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          radius: 2 + Math.random() * 6,
+          color,
+          life: 30 + Math.floor(Math.random() * 30),
+          maxLife: 60,
         })
       }
     },
@@ -119,23 +137,24 @@ export function useSplatCanvas() {
         p.life--
 
         if (p.life <= 0) {
-          // Convert dead particle into a permanent stain
+          // Convert dead particle into a bigger, splashier permanent stain
+          const blobCount = 4 + Math.floor(Math.random() * 6)
           const blobs = Array.from(
-            { length: 3 + Math.floor(Math.random() * 4) },
+            { length: blobCount },
             () => ({
-              dx: (Math.random() - 0.5) * p.radius * 2,
-              dy: (Math.random() - 0.5) * p.radius * 2,
-              r: p.radius * (0.4 + Math.random() * 0.8),
+              dx: (Math.random() - 0.5) * p.radius * 3.5,
+              dy: (Math.random() - 0.5) * p.radius * 3.5,
+              r: p.radius * (0.5 + Math.random() * 1.2),
             }),
           )
           stainsRef.current.push({
             x: p.x,
             y: p.y,
             color: p.color,
-            alpha: 0.25 + Math.random() * 0.3,
+            alpha: 0.3 + Math.random() * 0.35,
             blobs,
           })
-          markCoverage(p.x, p.y, p.radius * 2)
+          markCoverage(p.x, p.y, p.radius * 3)
         } else {
           ctx.globalAlpha = p.life / p.maxLife
           ctx.fillStyle = p.color

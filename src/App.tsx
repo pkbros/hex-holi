@@ -225,7 +225,7 @@ function App() {
                 onClick={handleBrag}
                 className="w-full bg-green-700/70 hover:bg-green-600 text-white px-3 py-2 rounded-xl text-sm font-medium transition-colors cursor-pointer"
               >
-                📱 Brag on WhatsApp
+                📱 Share Your Highscore
               </button>
               <button
                 onClick={handleClean}
